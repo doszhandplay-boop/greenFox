@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GreenFox — киберспортивные матчи 1 на 1</title>
+  <meta name="description" content="GreenFox: создавай матчи по CS2 и другим играм, принимай вызовы, поднимайся в рейтинге.">
+  <link rel="icon" href="/fox.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#view">К содержимому</a>
+  <header class="top">
+    <a class="brand" href="#/"><img src="/fox.svg" alt="" width="36" height="36"><span>GreenFox</span></a>
+    <nav aria-label="Основное меню">
+      <a href="#/lobby">Матчи</a><a href="#/mine">Мои матчи</a><a href="#/leaders">Рейтинг</a><a href="#/rules">Правила</a>
+    </nav>
+    <div id="account"></div>
+  </header>
+  <p class="notice">Тестовый режим: играем на очки, реальные деньги не используются. Только для 18+.</p>
+  <main id="view" tabindex="-1"></main>
+  <footer>© GreenFox. Платформа в разработке.</footer>
+
+  <dialog id="authDlg" aria-labelledby="authTitle">
+    <h2 id="authTitle">Вход</h2>
+    <form id="loginForm" class="form">
+      <label>Почта<input name="email" type="email" required autocomplete="email"></label>
+      <label>Пароль<input name="password" type="password" required autocomplete="current-password"></label>
+      <p class="err" role="alert"></p>
+      <div class="row"><button class="btn">Войти</button><button type="button" class="btn ghost" data-close>Закрыть</button></div>
+      <p class="swap">Нет аккаунта? <button type="button" class="link" id="toReg">Зарегистрироваться</button></p>
+    </form>
+    <form id="regForm" class="form" hidden>
+      <label>Ник<input name="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" autocomplete="username"></label>
+      <label>Почта<input name="email" type="email" required autocomplete="email"></label>
+      <label>Пароль (от 8 символов)<input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+      <label>Дата рождения<input name="birthDate" type="date" required></label>
+      <label class="check"><input name="agree" type="checkbox" required> Мне есть 18 лет, я принимаю правила</label>
+      <p class="err" role="alert"></p>
+      <div class="row"><button class="btn">Создать аккаунт</button><button type="button" class="btn ghost" data-close>Закрыть</button></div>
+      <p class="swap">Уже есть аккаунт? <button type="button" class="link" id="toLogin">Войти</button></p>
+    </form>
+  </dialog>
+
+  <dialog id="createDlg" aria-labelledby="createTitle">
+    <h2 id="createTitle">Новый матч</h2>
+    <form id="createForm" class="form">
+      <label>Игра<select name="game"></select></label>
+      <label>Название<input name="title" required minlength="3" maxlength="60" placeholder="Дуэль на Mirage, 1 на 1"></label>
+      <label>Взнос, очков (1–1000)<input name="entry" type="number" min="1" max="1000" value="50" required></label>
+      <p class="hint" id="payoutHint"></p>
+      <p class="err" role="alert"></p>
+      <div class="row"><button class="btn">Создать матч</button><button type="button" class="btn ghost" data-close>Закрыть</button></div>
+    </form>
+  </dialog>
+  <dialog id="profileDlg" aria-labelledby="profTitle">
+    <h2 id="profTitle">Мои игровые ID</h2>
+    <form id="profileForm" class="form">
+      <label>Steam ID64 (для CS2 и Dota 2)<input name="steamId" inputmode="numeric" placeholder="76561198000000000"></label>
+      <label>Тег Brawl Stars<input name="brawlTag" placeholder="#2ABC9XY"></label>
+      <p class="hint">Нужны, чтобы сайт сам определял победителя.</p>
+      <p class="err" role="alert"></p>
+      <div class="row"><button class="btn">Сохранить</button><button type="button" class="btn ghost" data-close>Закрыть</button></div>
+    </form>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
